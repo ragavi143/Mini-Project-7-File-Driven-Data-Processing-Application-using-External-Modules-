@@ -1,0 +1,30 @@
+Step 1: Create data file (data.txt) 
+Elavazhagi,85 
+John,78 Anu,92 
+ 
+Step 2: External Module (processor.py) 
+def calculate_average(data):     total = 0     for item in data:         total += item[1] 
+    return total / len(data) 
+ 
+def find_topper(data):     return max(data, key=lambda x: x[1]) 
+ 
+ Step 3: Main Program (main.py) 
+import processor 
+ 
+def read_file():     data = []     with open("data.txt", "r") as file:         for line in file: 
+            name, marks = line.strip().split(",")             data.append((name, int(marks))) 
+    return data 
+ 
+def display_data(data):     print("\nStudent Data:")     for name, marks in data:         print(name, "-", marks) 
+ 
+def main(): 
+    data = read_file() 
+    display_data(data) 
+ 
+    avg = processor.calculate_average(data)     topper = processor.find_topper(data) 
+ 
+    print("\nAverage Marks:", avg) 
+    print("Topper:", topper[0], "-", topper[1]) 
+ 
+main() 
+ 
